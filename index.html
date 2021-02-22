@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson-1</title>
+</head>
+<body>
+   <script>
+      'use strict';
+       // Выполнение 1-го задания
+       
+       // пример 1
+       let a = 1, b = 1, c, d;
+       c = ++a;
+       alert(c); // ответ 2
+       // Инкремент в префиксной форме увеличивает значение переменной а на 1,
+       // затем полученное значение 2 присваивается переменной с
+       
+       // пример 2
+       d = b++;
+       alert(d); // ответ 1
+       // Переменной d присваивается значение переменной b = 1,
+       // и только потом инкремент в постфиксной форме увеличивает значение переменной b на 1 
+       
+       // пример 3
+       c = 2 + ++a;
+       alert(c); // ответ 5
+       // Инкремент в префиксной форме увеличивает значение переменной а на 1, т.е. а = 3,
+       // затем переменной с присваивается результат суммы 2 + 3
+       
+       // пример 4
+       d = 2 + b++;
+       alert(d); // ответ 4
+       // Переменной d присваивается результат суммы 2 + 2 (переменная b увеличилась на 1 в примере 2),
+       // затем инкремент в постфиксной форме увеличивает значение переменной b на 1
+       
+       alert(a); // 3
+       // Инкремент в префиксной форме увеличил значение переменной а на 1 в примерах 1 и 3 
+       
+       alert(b); // 3
+       // Инкремент в постфиксной форме увеличил значение переменной b на 1 в примерах 2 и 4
+    
+       
+       // Выполнение 2-го задания
+       
+       a = 2;
+       let x = 1 + (a *= 2);
+       // Переменная а будет равна 4 (выражение в скобках можно переписать так: а = а * 2),
+       // соответственно переменная x = 5
+       
+       
+       // Выполнение 3-го задания
+       
+       a = 45;
+       b = -5;
+       
+       if (a >= 0 && b >= 0) alert(a - b);
+           else if (a < 0 && b < 0) alert(a * b);
+           else if ((a < 0 && b >= 0) || (a >= 0 && b < 0)) alert(a + b);
+       
+       
+       // Выполнение 4-го задания
+       
+       a = +prompt("Введите 1-е число");
+       b = +prompt("Введите 2-е число");
+       
+       
+       let add = function(a, b){
+           return a + b;
+       }
+       
+       let subtr = function(a, b){
+           return a - b;
+       }
+       
+       let mult = function(a, b){
+           return a * b;
+       }
+       
+       let divis = function(a, b){
+           return a / b;
+       }
+   
+       alert(`${a} + ${b} = ${add(a, b)}`);
+       alert(`${a} - ${b} = ${subtr(a, b)}`);
+       alert(`${a} * ${b} = ${mult(a, b)}`);
+       alert(`${a} / ${b} = ${divis(a, b)}`);
+       
+       // Выполнение 5-го задания
+       
+       let operation = prompt("Введите операцию (сумма, разность, умножение или деление)");
+       
+       let mathOperation = function (arg1, arg2, operation) {
+          switch(operation){
+              case "сумма":
+                  alert(`${arg1} + ${arg2} = ${add(arg1, arg2)}`);
+                  break;
+              case "разность":
+                  alert(`${arg1} - ${arg2} = ${subtr(arg1, arg2)}`);
+                  break;
+              case "умножение":
+                  alert(`${arg1} * ${arg2} = ${mult(arg1, arg2)}`);
+                  break;
+              case "деление":
+                  alert(`${arg1} / ${arg2} = ${divis(arg1, arg2)}`);
+                  break;
+              default:
+                  alert("Введите корректную операцию");
+          }   
+       }
+       
+       mathOperation(a, b, operation);
+
+       // Выполнение 6-го задания
+       
+       let deposit = +prompt("Какую сумму вы бы хотели внести на счет?");
+       
+       let depositString = deposit.toString();
+           
+       let depositLength = depositString.length;
+       
+       let depositLastChar = +depositString[depositString.length - 1];
+
+       let depositPenultChar = +depositString[depositString.length - 2];
+       
+       if (deposit > 0) {
+           if (depositPenultChar == 1) alert(`Ваша сумма в ${deposit} рублей успешно зачислена.`);
+           else if (depositLastChar == 1) alert(`Ваша сумма в ${deposit} рубль успешно зачислена.`);
+           else if (depositLastChar == 0 || (5 <= depositLastChar && depositLastChar <= 9)) alert(`Ваша сумма в ${deposit} рублей успешно зачислена.`);
+           else if (2 <= depositLastChar && depositLastChar <= 4) alert(`Ваша сумма в ${deposit} рубля успешно зачислена.`);
+       }else {
+           alert("Введите корректную сумму");
+       }
+
+</script>
+  
+</body>
+</html>
