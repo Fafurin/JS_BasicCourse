@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        // Выполнение задания 1
+        let number = +prompt("Введите целое число от 0 до 999");
+        
+        let numberToObject = function(number){
+            return {
+                units: number % 10,
+                tens: Math.floor((number % 100)/10),
+                hundreds: Math.floor((number % 1000)/100)
+            }
+        }
+        
+        if (number < 0 || number > 999 || !Number.isInteger(number)){
+            alert("Введите корректное число!");
+        } else {
+            console.log(numberToObject(number));
+        };
+        
+        // Выполнение задания 1.1
+        // es5
+        function Product(name, price){
+            this.name = name;
+            this.price = price;
+        }
+        
+        Product.prototype.make25PercentDiscount = function(){
+            this.price = this.price - (this.price / 100 * 25);
+        }
+        
+        let product1 = new Product('Джинсы', 400);
+        product1.make25PercentDiscount();
+        
+        console.log(product1);
+        
+        // es6
+        class ProductES6 {
+            constructor(name, price){
+                this.name = name;
+                this.price = price;                
+            }
+            
+            make25PercentDiscount(){
+                this.price = this.price - (this.price / 100 * 25);
+            }
+        }
+        
+        let product2 = new ProductES6('Кеды', 450);
+        product2.make25PercentDiscount();
+        console.log(product2);
+        
+        // Выполнение задания 1.2
+        // es5
+        function Post(author, text, date){
+            this.author = author;
+            this.text = text;
+            this.date = date;
+        }
+        
+        Post.prototype.edit = function(text){
+            this.text = text;
+        }
+                
+        let post1 = new Post('Иванов Иван', 'Lorem ipsum', '01.02.2021');
+        console.log(post1);
+        post1.edit('Новый текст...');
+        console.log(post1);
+        
+        function AttachedPost(author, text, date){
+            Post.call(this, author, text, date);
+            this.highlighted = false;
+        }
+        
+        AttachedPost.prototype = Object.create(Post.prototype);
+        AttachedPost.constructor = AttachedPost;
+        
+        AttachedPost.prototype.makeTextHighlighted = function(){
+            this.highlighted = true;
+        }
+        
+        let post2 = new AttachedPost('Петров Петр', 'Lorem ipsum dolor', '2 апреля');
+        console.log(post2);
+        post2.makeTextHighlighted();
+        console.log(post2);
+        
+        // es6
+        class PostES6{
+            constructor(author, text, date){
+                this.author = author;
+                this.text = text;
+                this.date = date;                
+            }
+            
+            edit(text){
+                this.text = text;
+            }
+        }
+        
+        let post3 = new PostES6('Неизвестный автор', 'Какая-то чушь...', 'до н.э.');
+        console.log(post3);
+        post1.edit('Lorem ipsum...');
+        console.log(post3);
+       
+        class AttachedPostES6 extends PostES6 {
+            constructor(author, text, date){
+                super(author, text, date);
+                this.highlighted = false;
+            }
+        
+            makeTextHighlighted(){
+                this.highlighted = true;
+            }
+        }
+
+        let post4 = new AttachedPostES6('...', '...', '...');
+        console.log(post4);
+        post4.makeTextHighlighted();
+        post4.edit('Какой-то текст...');
+        console.log(post4);
+        
+    </script>
+</body>
+</html>
